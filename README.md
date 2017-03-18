@@ -1,7 +1,7 @@
 # xyz.rsmq.single.bootstrap
 Redis Simple Message Queue bootstrap function for xyz
 
-[![Build Status](https://travis-ci.org/node-xyz/xyz.rsmq.single.bootstrap.svg?branch=master)](https://travis-ci.org/node-xyz/xyz.rsmq.single.bootstrap)
+[![Build Status](https://travis-ci.org/node-xyz/xyz.rsmq.single.bootstrap.svg?branch=master)](https://travis-ci.org/node-xyz/xyz.rsmq.single.bootstrap) [![npm version](https://badge.fury.io/js/xyz.rsmq.single.bootstrap.svg)](https://badge.fury.io/js/xyz.rsmq.single.bootstrap)
 
 ---
 
@@ -41,13 +41,13 @@ As you see, both `CALL` and `CALL_UDP` routes have been registered to send their
 
 First of all, you need to have the module installed.
 
-```
+```bash
 $ npm install xyz.rsmq.single.bootstrap
 ```
 
 and a redis server running
 
-```
+```bash
 $ redis-server
 ```
 
@@ -100,7 +100,7 @@ And that's about it! If you send a message to `/task/cpu`, you see that it will 
 
 The data passed to the business level service using this middleware is sightly different than normal messages. It contains an extra information regarding the sender of the message:
 
-```
+```javascript
 let _payload = {
   userPayload: _msg.body.userPayload,
   senderNetId: _msg.body.senderNetId
@@ -113,7 +113,7 @@ This object will be passed to the function you `.register()`.
 
 If the HTTP version is being used, the message will be responded to the caller with:
 
-```
+```javascript
 response.end(JSON.stringify({message: `message added to queue at receiver [${xyz.id().netId}]`}))
 ```
 
@@ -121,7 +121,7 @@ response.end(JSON.stringify({message: `message added to queue at receiver [${xyz
 
 Both the HTTP and UDP bootstrap functions can be configured using
 
-```
+```javascript
 ms.bootstrap(xyzRsmq, config)
 ```
 
@@ -129,11 +129,11 @@ where `config` can be:
 
 |    option   | default value   | description |
 |:-----------:|-----------------|-------------|
-| config.rsmqConfig        | see `util/constants.js` |      options passed to rsmq worker. see [this page](https://github.com/mpneuried/rsmq-worker)       |
-| config.qname       | `xyz_rmsq`            |      name of the queue      |
-| config.serverId.route    | 5000            |      name of the route in target server      |
-| config.serverId.port    | `xyz.id().port`            |      port of the target server      |
-| config.mwIndex    | 0            |     index to insert `sendToQueue()` mw into      |
+| `config.rsmqConfig`        | see `util/constants.js` |      options passed to rsmq worker. see [this page](https://github.com/mpneuried/rsmq-worker)       |
+| `config.qname`       | `xyz_rmsq`            |      name of the queue      |
+| `config.serverId.route`    | 5000            |      name of the route in target server      |
+| `config.serverId.port`    | `xyz.id().port`            |      port of the target server      |
+| `config.mwIndex`    | 0            |     index to insert `sendToQueue()` mw into      |
 
 # Test and Example
 
@@ -141,6 +141,6 @@ The test folder includes a full test where one `worker.js` will receive and enqu
 
 You can run each node individually or run them all using `xyz-cli` using
 
-```
+```bash
 xyz dev -c ./xyztestrc.json
 ```

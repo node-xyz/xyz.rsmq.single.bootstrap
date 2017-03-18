@@ -23,7 +23,7 @@ before(function (done) {
 it('message rate', function (done) {
   _send('network', processes[workerId], (data) => {
     // 10 is expected
-    expect(data.rcv).to.be.above(9)
+    expect(data.rcv).to.be.above(8)
     _send('network', processes[clientId], (data) => {
       expect(data.snd).to.be.above(4)
       done()

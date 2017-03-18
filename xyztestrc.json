@@ -13,6 +13,13 @@
       "port": 4000,
       "stdio": "file",
       "params": ""
+    },
+    {
+      "path": "test/tests/ms/client.udp.js",
+      "instance": 1,
+      "port": 5000,
+      "stdio": "file",
+      "params": ""
     }
   ]
 }

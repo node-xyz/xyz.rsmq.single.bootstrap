@@ -2,31 +2,19 @@ const RSMQWorker = require('rsmq-worker')
 const mergeRecursive = require('./util/util').mergeRecursive
 const CONSTANTS = require('./util/constants')
 
-let worker, logger
-let route, port
+function rsmqUdpBootstrap (xyz, config) {
+  let _sendUdpToRMSQueueU = function (params, next, end, xyz) {
+    // TODO: this should also work with UDP
+    // add the message to queue
+    worker.send(JSON.stringify({
+      body: params[0].json
+    }), (err) => {
+      // no middleware after this should work.
+      end()
+    })
+  }
 
-let _sendToRMSQueue = function (params, next, end, xyz) {
-  // TODO: this should also work with UDP
-  let response = params[1]
-
-  // add the message to queue
-  worker.send(JSON.stringify({
-    body: params[2],
-    senderID: params[2].senderNetId,
-    receivedTransport: {route: route, port: port}
-  }), (err) => {
-    // close and responde to the http message
-    if (response) {
-      response.end(JSON.stringify({message: `message added to queue at receiver [${xyz.id().netId}]`}))
-    }
-
-    // no middleware after this should work.
-    end()
-  })
-}
-
-function rsmqQueueBootstrap (xyz, config) {
-  // TODO: add a config so that it will bind events for monitorin
+  let worker, logger
   logger = xyz.logger
 
   // ----- Setup -----
@@ -40,6 +28,7 @@ function rsmqQueueBootstrap (xyz, config) {
   // port and route to identify the server to inject the middleware
   // default port is the primary port (port of the first Transport)
   // default route is `CALL`
+  let route, port
   route = config.serverId.route || CONSTANTS.route
   port = config.serverId.port || xyz.id().port
 
@@ -52,16 +41,22 @@ function rsmqQueueBootstrap (xyz, config) {
 
   // configure middlewares
   let _mw = xyz.middlewares().transport.server(route)(port)
-  _mw.register(mwIndex, _sendToRMSQueue)
+  _mw.register(mwIndex, _sendUdpToRMSQueueU)
 
   // start reading from the queue
   worker.on('message', (msg, next, id) => {
     // pass the message to service layer via event
     let _msg = JSON.parse(msg)
+    // what will be passed as data to function
+    let _payload = {
+      userPayload: _msg.body.userPayload,
+      senderNetId: _msg.body.senderNetId
+      // receivedFrom: config.serverId
+    }
     logger.debug(`XYZ-RSMQ :: passing message for ${_msg.body.service} up to service repository`)
     xyz.serviceRepository.transport.servers[xyz.id().port].emit(xyz.CONSTANTS.events.MESSAGE, {
       service: _msg.body.service,
-      userPayload: _msg.body
+      userPayload: _payload
     })
 
     // delete the message from queue
@@ -76,4 +71,4 @@ function rsmqQueueBootstrap (xyz, config) {
   module.exports._rsmq = worker
 }
 
-module.exports = rsmqQueueBootstrap
+module.exports = rsmqUdpBootstrap

@@ -6,19 +6,29 @@ const TOTAL = require('./../common').TOTAL
 let processes
 let identifiers = []
 let TESTER
+let workerId, clientId
 
 before(function (done) {
+  this.timeout(20 * 1000)
   test.setUpTestEnv((p) => {
     processes = p
     identifiers = Object.keys(processes)
+    workerId = identifiers[0]
+    clientId = identifiers[1]
     TESTER = test.getTester()
-    done()
+    setTimeout(done, 10 * 1000)
   })
 })
 
-it('load should be balanced', function (done) {
-  // client: 50 msg/sec
-  done()
+it('message rate', function (done) {
+  _send('network', processes[workerId], (data) => {
+    // 10 is expected
+    expect(data.rcv).to.be.above(9)
+    _send('network', processes[clientId], (data) => {
+      expect(data.snd).to.be.above(4)
+      done()
+    })
+  })
 })
 
 after(function () {

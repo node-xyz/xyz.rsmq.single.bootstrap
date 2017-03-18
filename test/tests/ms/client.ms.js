@@ -6,13 +6,13 @@ let client = new XYZ({
     name: 'client.ms',
     transport: [{type: 'HTTP', port: 4000}]
   },
-  systemConf: {nodes: []}
+  systemConf: {nodes: ['127.0.0.1:3000', '127.0.0.1:5000']}
 })
 
 setInterval(function () {
   client.call({servicePath: '/task/cpu'}, (err, body, response) => {
     console.log(err, body)
   })
-}, 2000)
+}, 200)
 
 console.log(client)

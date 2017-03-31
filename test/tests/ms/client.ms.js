@@ -10,7 +10,7 @@ let client = new XYZ({
 })
 
 setInterval(function () {
-  client.call({servicePath: '/task/cpu'}, (err, body, response) => {
+  client.call({servicePath: '/task/cpu', payload: 'do the cou task!'}, (err, body, response) => {
     console.log(err, body)
   })
 }, 200)

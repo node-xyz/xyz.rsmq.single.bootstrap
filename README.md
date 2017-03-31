@@ -65,7 +65,7 @@ let worker = new XYZ({...})
 worker.middlewares().transport.server('CALL')(worker.id().port).remove(0)
 
 // bootstrap rsmq on HTTP server @ port 4000 and route 'call'
-worker.bootstrap(_xyzRsmq.http, {
+worker.bootstrap(_xyzRsmq, {
   qnmae: 'http_queue',
   serverId: {
     port: worker.id().port,
@@ -74,7 +74,7 @@ worker.bootstrap(_xyzRsmq.http, {
 })
 
 // you can access the rsmq object using:
-const rsmq = _xyzRsmq.http._rsmq
+const rsmq = _xyzRsmq._rsmq
 
 // register a dummy task
 worker.register('/task/cpu', (payload) => {
@@ -90,24 +90,11 @@ worker.register('/task/cpu', (payload) => {
 
 And that's about it! If you send a message to `/task/cpu`, you see that it will be called on schedule using a Queue
 
-> Obviously, since this is async messaging, there will be no `response` in the second argument of `.register()`.
+> Obviously, since this is async messaging, there will be no `response` in the second argument of `.register()`. [This line of code will respond]() to it.
 
 # Spec
 
-`xyz.rsmq.single.bootstrap` returns an object with two keys. `http` and `udp`. Each should be used for a http or udp server. See `client.ms.js` and `client.udp.js` in `/test` folder for more detail.
-
---
-
-The data passed to the business level service using this middleware is sightly different than normal messages. It contains an extra information regarding the sender of the message:
-
-```javascript
-let _payload = {
-  userPayload: _msg.body.userPayload,
-  senderNetId: _msg.body.senderNetId
-}
-```
-
-This object will be passed to the function you `.register()`.
+`xyz.rsmq.single.bootstrap` returns a single function that can be used to bootstrap both udp and http routes and servers. See `client.ms.js` and `client.udp.js` in `/test` folder for more detail.
 
 --
 

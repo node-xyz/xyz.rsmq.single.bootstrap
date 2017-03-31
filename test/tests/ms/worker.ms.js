@@ -14,7 +14,7 @@ let worker = new XYZ({
 // remove the default `httpEvent` middleware.
 // note that it will work without this line since we call  `end()` in `_sendToQueue`
 worker.middlewares().transport.server('CALL')(worker.id().port).remove(0)
-worker.bootstrap(_b.http, {
+worker.bootstrap(_b, {
   qnmae: 'http_queue',
   serverId: {
     port: worker.id().port,
@@ -25,7 +25,7 @@ worker.bootstrap(_b.http, {
 
 // setup udp route
 worker.registerServerRoute(3001, 'CALL_UDP')
-worker.bootstrap(_b.udp, {
+worker.bootstrap(_b, {
   qnmae: 'udp_queue',
   serverId: {
     port: 3001,
@@ -33,7 +33,7 @@ worker.bootstrap(_b.udp, {
   }
 })
 
-const rsmq = _b.http._rsmq
+const rsmq = _b._rsmq
 
 worker.register('/task/cpu', (payload, response) => {
   console.log('task/cpu', payload)

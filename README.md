@@ -27,15 +27,16 @@ Transport:
 
   HTTPServer @ 3000 ::
     Middlewares:
-    call.receive.mw [/CALL] || _sendHttpToRMSQueue[0]
+    call.receive.mw [/CALL] || _sendToRMSQueue[0]
     ping.receive.mw [/PING] || _pingEvent[0]
 
   UDPServer @ 3001 ::
     Middlewares:
-    CALL_UDP.receive.mw [/CALL_UDP] || _sendUdpToRMSQueueU[0]
+    CALL_UDP.receive.mw [/CALL_UDP] || _sendToRMSQueue[0]
+
 ```
 
-As you see, both `CALL` and `CALL_UDP` routes have been registered to send their messages to the queue using `_sendHttpToRMSQueue` and `_sendUdpToRMSQueueU`. We will discuss these tests in more depth in the following sections.
+As you see, both `CALL` and `CALL_UDP` routes have been registered to send their messages to the queue using `_sendToRMSQueue`. We will discuss these tests in more depth in the following sections.
 
 # Usage
 

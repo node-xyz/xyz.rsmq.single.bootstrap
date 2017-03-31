@@ -7,7 +7,7 @@ Redis Simple Message Queue bootstrap function for xyz
 
 # Description
 
-This module integrates xyz-core with [RSMQ](https://github.com/mpneuried/rsmq-worker). It can be used for asynchronous messaging. It is highly flexible and can be added to any server in xyz. The beauty if this module is that the sender does not to know about the receiver at all and works just as if it was sending a normal message. Let's see the big picture.
+This module integrates xyz-core with [RSMQ](https://github.com/mpneuried/rsmq-worker). It can be used for asynchronous messaging. It is highly flexible and can be added to any server in xyz. The beauty if this module is that the sender does not need to know about the receiver at all and works just as if it was sending a normal message. Let's see the big picture.
 
 ![RMSQ info](https://github.com/node-xyz/xyz.rsmq.single.bootstrap/blob/master/media/rsmq.info.png?raw=true)
 

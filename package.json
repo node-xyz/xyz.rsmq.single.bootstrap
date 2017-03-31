@@ -16,6 +16,6 @@
     "chai": "^3.5.0",
     "mocha": "^2.5.3",
     "xyz-cli": "latest",
-    "xyz-core": "latest"
+    "xyz-core": "0.4.x"
   }
 }

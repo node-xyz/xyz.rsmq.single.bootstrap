@@ -9,7 +9,7 @@ let client = new XYZ({
   systemConf: {nodes: ['127.0.0.1:3000', '127.0.0.1:4000']}
 })
 
-const _udpExport = require('xyz-core/src/Transport/Middlewares/call/udp.export.middleware')
+const _udpExport = require('xyz-core/built/Transport/Middlewares/udp.export.middleware')._udpExport
 client.registerClientRoute('CALL_UDP')
 client.middlewares().transport.client('CALL_UDP').register(0, _udpExport)
 

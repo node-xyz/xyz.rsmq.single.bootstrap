@@ -7,7 +7,7 @@ services:
     provider: npm
     email: kian.peymani@gmail.com
     api_key:
-      secure: cSSUaP4V7PutZRkRI9U9/JJ0YqvmToP/D8oEjMRwWH0eQK7+Wx4Ra+NB6glTkBMVoDHDTEgtO56VpWnmI6dVku5/O7DzmV4VUo/Khh4tBY8UTLM51hH5GAl+ac8BAbWuMhzKnkxWdNDTD6bGNBjGlLIC5LgRARphW6ZTJ9A7nbN25/4ve2kx6LSgk+SsizWo95ACQ6hdGcHIfTMwygq1moXRX/nkZxbVTphQ$
+      secure: cSSUaP4V7PutZRkRI9U9/JJ0YqvmToP/D8oEjMRwWH0eQK7+Wx4Ra+NB6glTkBMVoDHDTEgtO56VpWnmI6dVku5/O7DzmV4VUo/Khh4tBY8UTLM51hH5GAl+ac8BAbWuMhzKnkxWdNDTD6bGNBjGlLIC5LgRARphW6ZTJ9A7nbN25/4ve2kx6LSgk+SsizWo95ACQ6hdGcHIfTMwygq1moXRX/nkZxbVTphQ4Eufed+bwN/KMNGVdcmQS8JP5DLgiOWWLlqI040u+v3ULLQrHAZ1RFyshfXOK1GD7RRThU6cNZMsDlQ/mcsgJfXPjtCDEVfL+eJGtr/gZ28dBcG/4nYjBTFMTqfmpThkent4Ham5kqA3+rJ3vTA1TqX3rSbC+zJH5vHNfftOP6du2HMFX67ObIl+6uNfjQhi95bOP2h1oSdeCAbAK688mB2zs3XyH+f3qDzfOg2nYE2OVeW5SHJUUOcyFRdSS1Nyc/VoN5m12cATfd67X8ChtVq1x2Zf5ts7Dku+MLqkedw1LuqMm3dhEqU4K+eWF9BK6JSoQ1eDCa5OgYiN3NoVsns5ogLcAbnQ0EQqcWvISvzrR8xSoh0IdDsxzuuVxvIvRQOBM31fcNboBnkhfxoNShnpTZwNt0RGKpnKSJoe896VfVP+zoJjyte21QOPHltll/XJ3ks=
     on:
-      repo: node-xyz/xyz-core
+      repo: node-xyz/xyz.rsmq.single.bootstrap
       branch: master

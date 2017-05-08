@@ -17,6 +17,6 @@ setInterval(function () {
   client.call({servicePath: '/task/cpu', payload: 'udp message', route: 'CALL_UDP', redirect: true}, (err, body, response) => {
     console.log(err, body)
   })
-}, 200)
+}, 100)
 
 console.log(client)

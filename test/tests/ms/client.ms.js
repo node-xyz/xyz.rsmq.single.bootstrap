@@ -13,6 +13,6 @@ setInterval(function () {
   client.call({servicePath: '/task/cpu', payload: 'do the cou task!'}, (err, body, response) => {
     console.log(err, body)
   })
-}, 200)
+}, 100)
 
 console.log(client)

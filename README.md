@@ -2,7 +2,7 @@
 Redis Simple Message Queue bootstrap function for xyz
 
 [![Build Status](https://travis-ci.org/node-xyz/xyz.rsmq.single.bootstrap.svg?branch=master)](https://travis-ci.org/node-xyz/xyz.rsmq.single.bootstrap) [![npm version](https://badge.fury.io/js/xyz.rsmq.single.bootstrap.svg)](https://badge.fury.io/js/xyz.rsmq.single.bootstrap)
-
+[![dependencies Status](https://david-dm.org/node-xyz/xyz.rsmq.single.bootstrap/status.svg)](https://david-dm.org/node-xyz/xyz.rsmq.single.bootstrap)
 ---
 
 # Description
